@@ -1,7 +1,7 @@
 {
   "watch": ["src"],
-  "exec": "node -r dotenv/config src/app.js",
-  "ext": "js",
+  "exec": "node --env-file=.env src/index.ts",
+  "ext": "ts",
   "delay": "500",
   "signal": "SIGHUP"
 }

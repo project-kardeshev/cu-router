@@ -6,11 +6,13 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "nodemon",
-    "start": "node -r dotenv/config src/index.js",
-    "test": "node --test"
+    "dev": "cross-env NODE_OPTIONS=\"--import=./register.mjs\" nodemon --exec node --env-file=.env src/index.ts",
+    "start": "cross-env NODE_OPTIONS=\"--import=./register.mjs\" node --env-file=.env src/index.ts",
+    "test": "node --test",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@koa/cors": "^5.0.0",
     "@koa/router": "^13.1.0",
     "axios": "^1.7.9",
     "http-proxy": "^1.18.1",
@@ -31,6 +33,7 @@
     "@types/node": "^22.10.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^6.4.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
@@ -41,8 +44,15 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-promise": "^6.1.1",
     "husky": "^8.0.3",
+    "lint-staged": "^15.2.11",
     "nodemon": "^3.1.9",
     "prettier": "^3.0.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.1.6"
+  },
+  "lint-staged": {
+    "**/*.{ts,js,mjs,cjs,md,json}": [
+      "prettier --write ."
+    ]
   }
 }
